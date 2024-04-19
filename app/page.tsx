@@ -29,7 +29,7 @@ export default async function Home() {
         '
       >
 {/* TODO: add interface to listing */}
-          {listings.map((listing: any) => {
+          {listings.map((listing) => {
             return (
               <ListingCard
                 currentUser={currentUser}

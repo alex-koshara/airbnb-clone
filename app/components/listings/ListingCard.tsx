@@ -8,9 +8,10 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import HeartButton from '../HeartButton';
 import Button from '../Button';
+import { SafeListing } from '@/app/types';
 
 interface ListingCardProps {
-  data: Listing;
+  data: SafeListing;
   reservation?: Reservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
