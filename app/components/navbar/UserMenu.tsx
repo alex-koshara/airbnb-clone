@@ -53,6 +53,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             hover:bg-neutral-100
             transition
             cursor-pointer
+            z-2
           '
         >
           Airbnb your home
