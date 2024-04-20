@@ -6,10 +6,11 @@ import useLoginModal from "./useLoginModal";
 import { User } from "@prisma/client";
 import { useCallback, useMemo } from "react";
 import { ro } from "date-fns/locale/ro";
+import { SafeUser } from "../types";
 
 interface IUseFavorit {
   listingId: string;
-  currentUser?: User | null;
+  currentUser?: SafeUser | null;
 }
 
 const useFavorite = ({ listingId, currentUser }: IUseFavorit) => {
