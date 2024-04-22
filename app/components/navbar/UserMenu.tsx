@@ -10,6 +10,7 @@ import { User } from '@prisma/client';
 import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import useRentModal from '@/app/hooks/useRentModal';
+import { useRouter } from 'next/navigation';
 
 interface UserMenuProps {
   currentUser?: User | null
@@ -19,6 +20,7 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({
   currentUser
 }) => {
+  const router = useRouter();
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
   const rentModal = useRentModal();
@@ -101,7 +103,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             {currentUser ? (
               <>
                 <MenuItem 
-                  onClick={() => {}}
+                  onClick={() => router.push('/trips')}
                   label="My tips"
                 />
                 <MenuItem 
@@ -109,7 +111,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                   label="My favorites"
                 />
                  <MenuItem 
-                  onClick={() => {}}
+                  onClick={() => router.push('/reservations')}
                   label="My reservations"
                 />
                  <MenuItem 
