@@ -14,8 +14,6 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Range } from 'react-date-range';
-import { Reservation } from '@prisma/client';
-
 
 const initialDateRange = {
   startDate: new Date(),
@@ -24,7 +22,7 @@ const initialDateRange = {
 };
 
 interface ListingClientProps {
-  reservation?: SafeReservation[];
+  reservations?: SafeReservation[];
   listing: SafeListing & {
     user: SafeUser;
   };
@@ -34,7 +32,7 @@ interface ListingClientProps {
 const ListingClient: React.FC<ListingClientProps> = ({
   listing,
   currentUser,
-  reservation = []
+  reservations = []
 }) => {
   const loginModal = useLoginModal();
   const router = useRouter();
@@ -42,7 +40,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
 
-    reservation.forEach((reservation) => {
+    reservations.forEach((reservation) => {
       const range = eachDayOfInterval({
         start: new Date(reservation.startDate),
         end: new Date(reservation.endDate)
@@ -52,7 +50,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     });
 
     return dates;
-  }, [reservation]);
+  }, [reservations]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
@@ -74,7 +72,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     .then(() => {
       toast.success('Listing reserved!');
       setDateRange(initialDateRange);
-      // Redirect to /trips
+      router.push('/trips');
       router.refresh();
     })
     .catch(() => {
