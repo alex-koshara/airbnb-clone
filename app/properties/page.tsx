@@ -3,6 +3,7 @@ import getListings from '../actions/getListings';
 
 import EmptyState from '../components/EmptyState';
 import PropertiesClient from './PropertiesClient';
+import { Suspense } from 'react';
 
 const PropertiesPage = async() => {
   const currentUser = await getCurrentUser();
@@ -30,10 +31,12 @@ const PropertiesPage = async() => {
   }
 
   return (
-    <PropertiesClient
-      listings={listings}
-      currentUser={currentUser}
-    />
+    <Suspense>
+      <PropertiesClient
+        listings={listings}
+        currentUser={currentUser}
+      />
+    </Suspense>
   )
 }
 

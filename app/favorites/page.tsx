@@ -2,6 +2,7 @@ import getCurrentUser from '../actions/getCurrentUser';
 import getFavoriteListings from '../actions/getFavoriteListings';
 import EmptyState from '../components/EmptyState';
 import FavoritesClient from './FavoritesClient';
+import { Suspense } from 'react';
 
 const ListingPage = async () => {
   const listings = await getFavoriteListings();
@@ -19,10 +20,12 @@ const ListingPage = async () => {
 
 
   return (
-    <FavoritesClient
-      listings={listings}
-      currentUser={currentUser}
-    />
+    <Suspense>
+      <FavoritesClient
+        listings={listings}
+        currentUser={currentUser}
+      />
+    </Suspense>
   )
 }
 
