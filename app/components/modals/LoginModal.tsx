@@ -29,7 +29,7 @@ const LoginModal = () => {
       errors,
     }
   } = useForm<FieldValues>({
-    Values: {
+    values: {
       email: '',
       password: '',
     }

@@ -3,9 +3,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 import useLoginModal from "./useLoginModal";
-import { User } from "@prisma/client";
 import { useCallback, useMemo } from "react";
-import { ro } from "date-fns/locale/ro";
 import { SafeUser } from "../types";
 
 interface IUseFavorit {
