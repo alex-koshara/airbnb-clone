@@ -2,6 +2,7 @@ import EmptyState from '../components/EmptyState';
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
 import ReservationsClient from './ReservationsClient';
+import { Suspense } from 'react';
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -29,10 +30,12 @@ const ReservationsPage = async () => {
   }
 
   return(
-    <ReservationsClient
-      reservations={reservations}
-      currentUser={currentUser}
-    />
+    <Suspense>
+      <ReservationsClient
+        reservations={reservations}
+        currentUser={currentUser}
+      />
+    </Suspense>
   )
 }
 
